@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff5f9e, #ff8fab);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.25);
+      padding: 26px;
+      border-radius: 24px;
+      max-width: 360px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .emoji {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    button {
+      padding: 10px 22px;
+      font-size: 15px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 6px;
+    }
+
+    .yes {
+      background: #2ecc71;
+      color: white;
+    }
+
+    .no {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .back {
+      background: rgba(255,255,255,0.3);
+      color: white;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ASK LOVE -->
+<div class="card" id="ask1">
+  <div class="emoji">🥺💗✨💞</div>
+  <h1>Do you love me?</h1>
+  <p>My heart is asking… please be honest 💕</p>
+
+  <button class="yes" onclick="go('loveText')">Yes ❤️</button>
+  <button class="no" onclick="go('askAgain')">No 🙈</button>
+</div>
+
+<!-- ASK AGAIN -->
+<div class="card" id="askAgain" style="display:none;">
+  <div class="emoji">😏💘💓</div>
+  <h1>Hmm… think again 😌</h1>
+  <p>Do you love me? 💖</p>
+
+  <button class="yes" onclick="go('loveText')">Yes ❤️</button>
+  <button class="no" onclick="go('askAgain')">No 🙃</button>
+  <br>
+  <button class="back" onclick="back()">⬅ Back</button>
+</div>
+
+<!-- LOVE PARAGRAPH -->
+<div class="card" id="loveText" style="display:none;">
+  <div class="emoji">🥰💖🫶💫</div>
+  <h1>I knew it 💕</h1>
+  <p>
+    Love you so much… I knew it deep in my heart that you love me too, baby.
+    You#80FF00 make me smile without trying and make my worst days feel lighter.
+    With you, even silence feels comfortable and moments feel special.
+    I love how you care, how you stay, and how you make me feel understood.
+
+    I don’t need reasons to love you — it just happens naturally.
+    Having you by my side feels like home.
+    I’m grateful for you every single day.
+    Always stay with me, okay? 💗✨
+  </p>
+
+  <button class="yes" onclick="go('picsAsk')">Next 💞</button>
+  <br>
+  <button class="back" onclick="back()">⬅ Back</button>
+</div>
+
+<!-- ASK FOR PICS -->
+<div class="card" id="picsAsk" style="display:none;">
+  <div class="emoji">📸🥰💋💖</div>
+  <h1>One small request 😘</h1>
+  <p>
+    Will you send me your cute pics every day?<br>
+    Your smile honestly makes my day 💕
+  </p>
+
+  <button class="yes" onclick="go('picsYes')">Yes baby 😍</button>
+  <button class="no" onclick="go('picsNo')">No 🙃</button>
+  <br>
+  <button class="back" onclick="back()">⬅ Back</button>
+</div>
+
+<!-- YES RESULT -->
+<div class="card" id="picsYes" style="display:none;">
+  <div class="emoji">😍🔥💖💞</div>
+  <h1>Cool baby 💕</h1>
+  <p>
+    You’re amazing and you just made me really happy.
+    I feel lucky to have you.
+    Waiting for your cute pics 😘📸
+  </p>
+
+  <button class="back" onclick="back()">⬅ Back</button>
+</div>
+
+<!-- NO RESULT -->
+<div class="card" id="picsNo" style="display:none;">
+  <div class="emoji">😜💓📸💘</div>
+  <h1>I know you 😄</h1>
+  <p>
+    Stop pretending 😏  
+    I know you’re joking… you’re totally going to send me your pics anyway 💕
+  </p>
+
+  <button class="back" onclick="back()">⬅ Back</button>
+</div>
+
+<script>
+  let historyStack = ["ask1"];
+
+  function hideAll() {
+    document.querySelectorAll(".card").forEach(c => c.style.display = "none");
+  }
+
+  function go(id) {
+    hideAll();
+    document.getElementById(id).style.display = "block";
+    historyStack.push(id);
+  }
+
+  function back() {
+    historyStack.pop();
+    hideAll();
+    const last = historyStack[historyStack.length - 1];
+    document.getElementById(last).style.display = "block";
+  }
+</script>
+
+</body>
+</html>
